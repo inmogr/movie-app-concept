@@ -13,7 +13,19 @@ export const useMovieList = () => {
         }, 1);
         try {
             const res = await ApiAxios.get("/movies");
-            setData(res.data?.movies);
+            const genres: Record<string, any> = {};
+            
+            const movies = res.data?.movies || [];
+            for (const movie of movies) {
+                for (const genre of movie.genres) {
+                    const existing = genres[genre] || { items: [] }
+                    existing.items = [...existing.items, movie];
+                    genres[genre] = existing;
+                }
+            }
+
+            const list = Object.keys(genres).map((genre) => ({ genre, items: genres[genre] }))
+            setData(list);
         } catch (error) {
             setError(error.message);
         }
