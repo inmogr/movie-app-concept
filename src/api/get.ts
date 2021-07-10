@@ -15,7 +15,7 @@ export const useMovieGet = () => {
         }, 1);
         try {
             const res = await ApiAxios.get("/movies");
-            const item = res.data.find((i: any) => i.id === id);
+            const item = res.data?.movies?.find((i: any) => i.id === id);
             setData(item);
         } catch (error) {
             setError(error.message);

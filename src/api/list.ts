@@ -13,7 +13,7 @@ export const useMovieList = () => {
         }, 1);
         try {
             const res = await ApiAxios.get("/movies");
-            setData(res.data);
+            setData(res.data?.movies);
         } catch (error) {
             setError(error.message);
         }
