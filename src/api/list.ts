@@ -5,15 +5,15 @@ import { ApiAxios } from "../libs";
 export const useMovieList = () => {
     const [loading, setLoading] = React.useState<boolean>();
     const [error, setError] = React.useState<string>();
-    const [data, setData] = React.useState<any[]>();
+    const [data, setData] = React.useState<GenreMovie[]>();
 
     const fetch = async () => {
         setTimeout(() => {
             setLoading(true);
         }, 1);
         try {
-            const res = await ApiAxios.get("/movies");
-            const genres: Record<string, any> = {};
+            const res = await ApiAxios.get<MoviesResponse>("/movies");
+            const genres: Record<string, GenreMovie> = {};
             
             const movies = res.data?.movies || [];
             for (const movie of movies) {
@@ -24,7 +24,7 @@ export const useMovieList = () => {
                 }
             }
 
-            const list = Object.keys(genres).map((genre) => ({ genre, items: genres[genre] }))
+            const list = Object.keys(genres).map((genre) => ({ genre, items: genres[genre].items }))
             setData(list);
         } catch (error) {
             setError(error.message);

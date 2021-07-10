@@ -7,14 +7,14 @@ import { ApiAxios } from "../libs";
 export const useMovieGet = () => {
     const [loading, setLoading] = React.useState<boolean>();
     const [error, setError] = React.useState<string>();
-    const [data, setData] = React.useState<any>();
+    const [data, setData] = React.useState<Movie>();
 
     const fetch = async (id: string) => {
         setTimeout(() => {
             setLoading(true);
         }, 1);
         try {
-            const res = await ApiAxios.get("/movies");
+            const res = await ApiAxios.get<MoviesResponse>("/movies");
             const item = res.data?.movies?.find((i: any) => i.id === id);
             setData(item);
         } catch (error) {
