@@ -58,7 +58,16 @@ const Details = React.memo((props: DetailsProps) => {
                         </View>
                         <View style={{ width: 24 }} />
                         <View style={styles.titleWrapper}>
-                            <Text style={[styles.titleWrapper, styles.title, title.length > 19 ? styles.titleLong : undefined]}>{title}</Text>
+                            <Text
+                                style={[
+                                    styles.titleWrapper,
+                                    styles.title,
+                                    title.length > 19 ? styles.titleLong : undefined,
+                                    title.length > 33 ? styles.titleVeryLong : undefined,
+                                ]}
+                            >
+                                {title}
+                            </Text>
                         </View>
                     </View>
                     <View style={[styles.area, { height: 75, alignItems: "flex-end" }]}>
@@ -133,6 +142,10 @@ const styles = StyleSheet.create({
     },
     titleLong: {
         top: -64,
+    },
+    titleVeryLong: {
+        top: -64,
+        fontSize: 22,
     },
     flexGrow: {
         flexGrow: 1,
