@@ -25,7 +25,7 @@ const RatingStars = React.memo((props: RatingStarsProps) => {
     return (
         <React.Suspense fallback={null}>
             {getStarsArray(props.rating).map((star, index) => (
-                <React.Fragment>
+                <React.Fragment key={index}>
                     {index ? <View style={{ width: 8 }} /> : null}
                     {star ? <Asset.star height={32} width={32} /> : <Asset.star_outline height={32} width={32} />}
                 </React.Fragment>
