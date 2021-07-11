@@ -4,8 +4,8 @@ import axios from "axios";
 export const ApiAxios = axios.create({
     baseURL: API_URL,
     headers: {
-        Authorization: `Bearer ${API_TOKEN}`
-    }
+        Authorization: `Bearer ${API_TOKEN}`,
+    },
 });
 
 export const configureAxios = async () => {

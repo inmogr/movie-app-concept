@@ -1,3 +1,3 @@
 declare interface MoviesResponse {
-    movies?: Movie[]
+    movies?: Movie[];
 }

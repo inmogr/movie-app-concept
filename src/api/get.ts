@@ -18,7 +18,7 @@ export const useMovieGet = () => {
             const item = res.data?.movies?.find((i: any) => i.id === id);
             if (!item) {
                 // Just basic handling for the purpose of demonstration
-                throw new Error("Failed")
+                throw new Error("Failed");
             }
             setData(item);
         } catch (error) {
