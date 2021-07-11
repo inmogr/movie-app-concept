@@ -1,8 +1,7 @@
 import { useNavigation } from "@react-navigation/core";
 import React from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, Pressable, StyleSheet } from "react-native";
 import FastImage from "react-native-fast-image";
-import { Button } from "react-native-paper";
 
 import { ROUTES } from "../constants";
 
@@ -26,9 +25,9 @@ const MovieList = React.memo((props: MovieListProps) => {
             data={props.items}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
-                <Button key={item.id} onPress={navToDetails(item)}>
+                <Pressable key={item.id} style={({ pressed }) => [styles.item, pressed ? { opacity: 0.5 } : undefined]} onPress={navToDetails(item)}>
                     <FastImage style={styles.image} source={{ uri: item.poster }} />
-                </Button>
+                </Pressable>
             )}
         />
     );
@@ -40,5 +39,8 @@ const styles = StyleSheet.create({
     image: {
         height: 128,
         width: 72,
+    },
+    item: {
+        paddingHorizontal: 16,
     },
 });
